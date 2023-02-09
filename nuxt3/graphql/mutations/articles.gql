@@ -1,0 +1,16 @@
+mutation createArticle($name: String!, $content: String!) {
+    createArticle(input: {
+        data: {
+            name: $name
+            content: $content
+        }
+    }) {
+        article {
+            id
+            name
+            content
+            created_at
+            updated_at
+        }
+    }
+}
