@@ -1,9 +1,10 @@
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
-  admin: {
-    auth: {
-      secret: env('ADMIN_JWT_SECRET', 'abc34b004f335857f451f9e37945137a'),
-    },
+  app: {
+    keys: env.array('APP_KEYS'),
+  },
+  webhooks: {
+    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
 });

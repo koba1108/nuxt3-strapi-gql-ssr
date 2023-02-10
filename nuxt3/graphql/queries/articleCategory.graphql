@@ -1,0 +1,15 @@
+query fetchArticleCategories($pagination: PaginationArg) {
+    articleCategories(
+        pagination: $pagination
+    ) {
+        __typename
+        data {
+            __typename
+            id
+            attributes {
+                __typename
+                name
+            }
+        }
+    }
+}

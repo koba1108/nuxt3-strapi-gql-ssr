@@ -1,23 +1,69 @@
-query GetArticles($limit: Int, $start: Int, $sort: String) {
-    articles(limit: $limit, start: $start, sort: $sort) {
-        id
-        name
-        content
-        created_at
-        updated_at
-        published_at
-        __typename
+query fetchArticles(
+    $pagination: PaginationArg
+    $filters: ArticleFiltersInput
+    $sort: [String]
+    $publicationState: PublicationState
+) {
+    articles(
+        pagination: $pagination
+        filters: $filters
+        sort: $sort
+        publicationState: $publicationState
+    ) {
+        meta {
+            pagination {
+                total
+                page
+                pageSize
+                pageCount
+                __typename
+            }
+        }
+        data {
+            id
+            attributes {
+                __typename
+                title
+                content
+                createdAt
+                updatedAt
+                publishedAt
+                article_categories {
+                    data {
+                        id
+                        attributes {
+                            name
+                            __typename
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-query GetArticleByID($id: ID!) {
+
+query fetchArticle($id: ID!) {
     article(id: $id) {
-        id
-        name
-        content
-        created_at
-        updated_at
-        published_at
+        data {
+            id
+            attributes {
+                title
+                content
+                publishedAt
+                createdAt
+                updatedAt
+                article_categories {
+                    data {
+                        id
+                        attributes {
+                            name
+                        }
+                    }
+                }
+                __typename
+            }
+        }
         __typename
     }
 }
