@@ -13,10 +13,14 @@ services:
       DATABASE_USERNAME: strapi
       DATABASE_PASSWORD: strapi
       DATABASE_SSL: 'false'
+      REDIS_URI: redis://redis:6379
+    volumes:
+      - ./strapi/config:/strapi/config
     ports:
       - '1337:1337'
     depends_on:
       - mysql
+      - redis
     tty: true
 
   mysql:
@@ -33,3 +37,10 @@ services:
       MYSQL_PASSWORD: strapi
     cap_add:
       - SYS_NICE
+
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./volumes/redis:/data

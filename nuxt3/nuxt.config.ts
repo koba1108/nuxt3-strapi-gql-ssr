@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// @ts-ignore
 export default defineNuxtConfig({
   modules: [
     'nuxt-graphql-client',
@@ -6,7 +7,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      GQL_HOST: 'http://localhost:1337/graphql'
+      GQL_HOST: 'http://127.0.0.1:1337/graphql'
     }
   },
   'graphql-client': {
