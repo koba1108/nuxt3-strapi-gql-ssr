@@ -105,3 +105,4 @@ dist
 
 volumes/mysql/*
 volumes/redis/*
+secrets/*
