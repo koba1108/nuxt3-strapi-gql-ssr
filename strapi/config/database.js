@@ -1,5 +1,5 @@
 module.exports = ({ env }) => {
-  return {
+  const connection = {
     connection: {
       client: env('DATABASE_CLIENT', 'mysql'),
       connection: {
@@ -14,4 +14,6 @@ module.exports = ({ env }) => {
       debug: env.bool("DATABASE_DEBUG", true),
     },
   }
+  console.log('connection', connection)
+  return connection
 }
